@@ -9,9 +9,6 @@
 <body>
 
 <header>
-    <h1>Primaria Sectorului 1</h1>
-    <h4 style="margin-top:-15px; margin-bottom: -10px;">Contul meu</h4>
-    <hr color="white" style="padding-top: 3px; margin-top: 1.5rem; border-radius: 3rem;">
     <div class="navbar">
         <ul>
             <li><a href="index.html">Acasa</a></li>
@@ -21,9 +18,18 @@
             <li><a href="javascript:void(0)" onclick="toggleSection('reclamatii')">Reclamatii</a></li>
         </ul>
     </div>
+    <h1>Primaria Sectorului 1</h1>
+    <h4 style="margin-top:-15px; margin-bottom: -10px;">Contul meu</h4>
 </header>
 
 <main>
+    <div class="hero">
+        <h2>Secțiunea „Contul Cetățeanului”</h2>
+        <p>Ai nevoie de asistență? Echipa noastră îți stă la dispoziție 24/7 pentru a te ajuta cu orice solicitare legată de serviciile noastre digitale.</p>
+        <p>Completează formularul de contact apăsând butonul de mai jos. Timpul mediu de răspuns este de 24 de ore lucrătoare. Ne poți contacta și telefonic la <strong>021 224 41 33</strong> sau prin e-mail la <a href="mailto:contact@primaria1.ro">contact@primaria1.ro</a>.</p>
+        <a href="contact.html" class="cta-button">Contactează-ne</a>
+        
+    </div>
     <div class="dashboard">
         <h2>Bun venit, <span id="userName"></span></h2>
         <div class="user-info">
@@ -45,6 +51,21 @@
                 <li><label for="carteIdentitate">Carte de Identitate: </label><input type="file" id="carteIdentitate"></li>
                 <li><label for="certificatNastere">Certificat de Naștere: </label><input type="file" id="certificatNastere"></li>
                 <li><label for="certificatCasatorie">Certificat de Căsătorie: </label><input type="file" id="certificatCasatorie"></li>
+                <li>
+                    <label for="motivAdeverinta">Motiv solicitare adeverință:</label>
+                    <ul style="list-style-type: none; padding-left: 0; padding-top:5px;">
+                        <li><label><input type="radio" name="motiv" value="angajator"> Pentru angajator</label></li>
+                        <li><label><input type="radio" name="motiv" value="medic"> Pentru cabinet medical</label></li>
+                        <li><label><input type="radio" name="motiv" value="somaj"> Pentru dosar de șomaj</label></li>
+                        <li><label><input type="radio" name="motiv" value="bursa"> Pentru bursă socială</label></li>
+                        <li><label><input type="radio" name="motiv" value="ajutor"> Pentru ajutor social</label></li>
+                        <li>
+                            <label><input type="radio" name="motiv" value="alte" id="alteMotivRadio"> Alte motive</label>
+                            <textarea id="motivPersonalizat" placeholder="Scrie aici motivul..." style="display:none; width: 100%; margin-top: 8px;"></textarea>
+                        </li>
+                    </ul>
+                </li>
+                
             </ul>
             <button onclick="submitAdeverinte()">Trimite Adeverinte</button>
         </div>
@@ -81,12 +102,13 @@
 </main>
 
 <script>
+    
     window.addEventListener('DOMContentLoaded', () => {
         const currentCNP = localStorage.getItem('currentUser');
 
         if (!currentCNP) {
             alert('Nu sunteți autentificat.');
-            window.location.href = 'index.html';
+            window.location.href = 'inregistrare.html';
             return;
         }
 
@@ -108,6 +130,20 @@
     document.getElementById('userStareCivila').textContent = userData.stareCivila || '';
     });
 
+    function submitAdeverinte() {
+    const carteIdentitate = document.getElementById('carteIdentitate').files.length > 0;
+    const certificatNastere = document.getElementById('certificatNastere').files.length > 0;
+    const certificatCasatorie = document.getElementById('certificatCasatorie').files.length > 0;
+    const motivSelectat = document.querySelector('input[name="motiv"]:checked');
+
+    if (carteIdentitate && certificatNastere && certificatCasatorie && motivSelectat) {
+        alert('Adeverințele au fost trimise pentru motivul: ' + motivSelectat.value);
+    } else {
+        alert('Trebuie să încărcați toate documentele necesare și să selectați un motiv!');
+    }
+}
+
+
     function toggleSection(section) {
         const sections = document.querySelectorAll('.section-content');
         sections.forEach(s => {
@@ -116,16 +152,30 @@
     }
 
     function submitAdeverinte() {
-        const carteIdentitate = document.getElementById('carteIdentitate').files.length > 0;
-        const certificatNastere = document.getElementById('certificatNastere').files.length > 0;
-        const certificatCasatorie = document.getElementById('certificatCasatorie').files.length > 0;
+    const carteIdentitate = document.getElementById('carteIdentitate').files.length > 0;
+    const certificatNastere = document.getElementById('certificatNastere').files.length > 0;
+    const certificatCasatorie = document.getElementById('certificatCasatorie').files.length > 0;
+    const motivSelectat = document.querySelector('input[name="motiv"]:checked');
+    const motivPersonalizat = document.getElementById('motivPersonalizat').value.trim();
 
-        if (carteIdentitate && certificatNastere && certificatCasatorie) {
-            alert('Adeverințele au fost trimise!');
-        } else {
-            alert('Trebuie să încărcați toate documentele necesare!');
-        }
+    if (!motivSelectat) {
+        alert('Te rugăm să selectezi un motiv pentru solicitare.');
+        return;
     }
+
+    if (motivSelectat.value === 'alte' && motivPersonalizat === '') {
+        alert('Te rugăm să completezi motivul personalizat.');
+        return;
+    }
+
+    if (carteIdentitate && certificatNastere && certificatCasatorie) {
+        const motivFinal = (motivSelectat.value === 'alte') ? motivPersonalizat : motivSelectat.value;
+        alert('Adeverințele au fost trimise pentru motivul: ' + motivFinal);
+    } else {
+        alert('Trebuie să încarci toate documentele necesare!');
+    }
+}
+
 
     function submitFiscala() {
         const adeverintaVenit = document.getElementById('adeverintaVenit').files.length > 0;
@@ -164,6 +214,13 @@
         localStorage.removeItem('currentUser');
         window.location.href = 'index.html';
     }
+    document.querySelectorAll('input[name="motiv"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+        const textarea = document.getElementById('motivPersonalizat');
+        textarea.style.display = (radio.value === 'alte') ? 'block' : 'none';
+    });
+});
+
 </script>
 <footer class="site-footer">
     <div class="footer-container">
