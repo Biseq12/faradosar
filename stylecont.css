@@ -1,0 +1,171 @@
+/* Stiluri generale pentru pagină */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #004080;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.navbar {
+    margin: 20px 0;
+}
+
+.navbar ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+.navbar ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.navbar ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.navbar ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Stiluri pentru secțiunea principală */
+.dashboard {
+    padding: 20px;
+    background-color: white;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Stiluri pentru informațiile utilizatorului */
+.user-info {
+    margin-bottom: 20px;
+}
+
+.section-content {
+    padding: 15px;
+    background-color: #ffffff;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.section-content h3 {
+    color: #004080;
+}
+
+.section-content ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.section-content ul li {
+    margin-bottom: 10px;
+}
+
+.section-content button {
+    background-color: #004080;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.section-content button:hover {
+    background-color: #003366;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.logoutButton{
+    width: 4.7rem;
+    padding: 0.625rem;
+    background-color: #004080;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #003060;
+}
+
+.site-footer {
+    background-color: #004080;
+    color: white;
+    padding: 40px 20px;
+    font-size: 14px;
+  }
+  
+  .footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  .footer-section {
+    flex: 1 1 300px;
+    margin: 10px;
+    color: #ffffff;
+  }
+  
+  .footer-section h4 {
+    margin-bottom: 15px;
+    color: #ffffff;
+  }
+  
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-section ul li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-section ul li a {
+    color: #d0d0d0;
+    text-decoration: none;
+  }
+  
+  .footer-section ul li a:hover {
+    text-decoration: underline;
+    color: #ffffff;
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    border-top: 1px solid #ffffff;
+    padding-top: 10px;
+    color: #d0d0d0;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .footer-container {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .footer-section {
+      margin-bottom: 20px;
+    }
+  }
+  

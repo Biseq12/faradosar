@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contul meu</title>
+    <link rel="stylesheet" href="stylecont.css">
+</head>
+<body>
+
+<header>
+    <h1>Primaria Sectorului 1</h1>
+    <h4 style="margin-top:-15px; margin-bottom: -10px;">Contul meu</h4>
+    <hr color="white" style="padding-top: 3px; margin-top: 1.5rem; border-radius: 3rem;">
+    <div class="navbar">
+        <ul>
+            <li><a href="index.html">Acasa</a></li>
+            <li><a href="javascript:void(0)" onclick="toggleSection('eliberareAdeverinte')">Eliberare Adeverinte</a></li>
+            <li><a href="javascript:void(0)" onclick="toggleSection('evidentaFiscala')">Evidenta Fiscala</a></li>
+            <li><a href="javascript:void(0)" onclick="toggleSection('solicitariCivile')">Solicitari Civile</a></li>
+            <li><a href="javascript:void(0)" onclick="toggleSection('reclamatii')">Reclamatii</a></li>
+        </ul>
+    </div>
+</header>
+
+<main>
+    <div class="dashboard">
+        <h2>Bun venit, <span id="userName"></span></h2>
+        <div class="user-info">
+            <p><strong>CNP:</strong> <span id="userCNP"></span></p>
+            <p><strong>Telefon:</strong> <span id="userTelefon"></span></p>
+            <p><strong>Email:</strong> <span id="userEmail"></span></p>
+            <p><strong>Adresă:</strong> <span id="userAdresa"></span></p>
+            <p><strong>Județ:</strong> <span id="userJudet"></span></p>
+            <p><strong>Serie CI:</strong> <span id="userSerieCI"></span></p>
+            <p><strong>Număr CI:</strong> <span id="userNumarCI"></span></p>
+            <p><strong>Stare Civilă:</strong> <span id="userStareCivila"></span></p>
+            <p><strong>Buletin:</strong> <span id="userBuletin"></span></p>
+        </div>
+
+        <!-- Secțiunile aplicației -->
+        <div id="eliberareAdeverinte" class="section-content">
+            <h3>Eliberare Adeverinte</h3>
+            <ul>
+                <li><label for="carteIdentitate">Carte de Identitate: </label><input type="file" id="carteIdentitate"></li>
+                <li><label for="certificatNastere">Certificat de Naștere: </label><input type="file" id="certificatNastere"></li>
+                <li><label for="certificatCasatorie">Certificat de Căsătorie: </label><input type="file" id="certificatCasatorie"></li>
+            </ul>
+            <button onclick="submitAdeverinte()">Trimite Adeverinte</button>
+        </div>
+
+        <div id="evidentaFiscala" class="section-content">
+            <h3>Evidenta Fiscala</h3>
+            <ul>
+                <li><label for="adeverintaVenit">Adeverință Venit: </label><input type="file" id="adeverintaVenit"></li>
+                <li><label for="dovadaPlata">Dovadă Plată Impozit: </label><input type="file" id="dovadaPlata"></li>
+            </ul>
+            <button onclick="submitFiscala()">Trimite Evidenta Fiscala</button>
+        </div>
+
+        <div id="solicitariCivile" class="section-content">
+            <h3>Solicitări Civile</h3>
+            <ul>
+                <li><label for="certificatInregistrare">Certificat Înregistrare: </label><input type="file" id="certificatInregistrare"></li>
+                <li><label for="cerere">Cerere: </label><input type="file" id="cerere"></li>
+            </ul>
+            <button onclick="submitSolicitariCivile()">Trimite Solicitări Civile</button>
+        </div>
+
+        <div id="reclamatii" class="section-content">
+            <h3>Reclamații</h3>
+            <ul>
+                <li><label for="formularReclamatie">Formular Reclamație: </label><input type="file" id="formularReclamatie" required></li>
+                <li><label for="documenteSuport">Documente Suport: </label><input type="file" id="documenteSuport" required></li>
+                <li><label for="descriereReclamatie">Descriere Reclamație: </label><textarea id="descriereReclamatie" required></textarea></li>
+            </ul>
+            <button onclick="submitReclamatie()">Trimite Reclamație</button>
+        </div>
+        <button id="logoutButton" class="logoutButton" onclick="logout()">Delogare</button>
+    </div>
+</main>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const currentCNP = localStorage.getItem('currentUser');
+
+        if (!currentCNP) {
+            alert('Nu sunteți autentificat.');
+            window.location.href = 'index.html';
+            return;
+        }
+
+        const userData = JSON.parse(localStorage.getItem(currentCNP));
+        if (!userData) {
+            alert('Datele utilizatorului nu au putut fi încărcate.');
+            return;
+        }
+
+        document.getElementById('userName').textContent = userData.nume || '';
+    document.getElementById('userCNP').textContent = currentCNP;
+    document.getElementById('userTelefon').textContent = userData.telefon || '';
+    document.getElementById('userEmail').textContent = userData.email || '';
+    document.getElementById('userAdresa').textContent = userData.adresa || '';
+    document.getElementById('userJudet').textContent = userData.judet || '';
+    document.getElementById('userSerieCI').textContent = userData.serieCI || '';
+    document.getElementById('userNumarCI').textContent = userData.numarCI || '';
+    document.getElementById('userBuletin').textContent = userData.buletin || '';
+    document.getElementById('userStareCivila').textContent = userData.stareCivila || '';
+    });
+
+    function toggleSection(section) {
+        const sections = document.querySelectorAll('.section-content');
+        sections.forEach(s => {
+            s.style.display = (s.id === section && s.style.display !== 'block') ? 'block' : 'none';
+        });
+    }
+
+    function submitAdeverinte() {
+        const carteIdentitate = document.getElementById('carteIdentitate').files.length > 0;
+        const certificatNastere = document.getElementById('certificatNastere').files.length > 0;
+        const certificatCasatorie = document.getElementById('certificatCasatorie').files.length > 0;
+
+        if (carteIdentitate && certificatNastere && certificatCasatorie) {
+            alert('Adeverințele au fost trimise!');
+        } else {
+            alert('Trebuie să încărcați toate documentele necesare!');
+        }
+    }
+
+    function submitFiscala() {
+        const adeverintaVenit = document.getElementById('adeverintaVenit').files.length > 0;
+        const dovadaPlata = document.getElementById('dovadaPlata').files.length > 0;
+
+        if (adeverintaVenit && dovadaPlata) {
+            alert('Evidența fiscală a fost trimisă!');
+        } else {
+            alert('Trebuie să încărcați toate documentele necesare!');
+        }
+    }
+
+    function submitSolicitariCivile() {
+        const certificatInregistrare = document.getElementById('certificatInregistrare').files.length > 0;
+        const cerere = document.getElementById('cerere').files.length > 0;
+
+        if (certificatInregistrare && cerere) {
+            alert('Solicitările civile au fost trimise!');
+        } else {
+            alert('Trebuie să încărcați toate documentele necesare!');
+        }
+    }
+
+    function submitReclamatie() {
+        const formularReclamatie = document.getElementById('formularReclamatie').files.length > 0;
+        const documenteSuport = document.getElementById('documenteSuport').files.length > 0;
+        const descriereReclamatie = document.getElementById('descriereReclamatie').value.trim();
+
+        if (formularReclamatie && documenteSuport && descriereReclamatie) {
+            alert('Reclamația a fost trimisă!');
+        } else {
+            alert('Trebuie să încărcați toate documentele necesare și să completați descrierea!');
+        }
+    }
+    function logout() {
+        localStorage.removeItem('currentUser');
+        window.location.href = 'index.html';
+    }
+</script>
+<footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>Primăria Sectorului 1</h4>
+        <p style="color:white">Str. Banu Manta nr. 9, Sector 1, București</p>
+        <p style="color:white">Telefon: 021 319 60 00</p>
+        <p style="color:white">Email: contact@primariasector1.ro</p>
+      </div>
+      <div class="footer-section">
+        <h4>Linkuri utile</h4>
+        <ul>
+          <li><a href="https://primariasector1.ro/">Site oficial</a></li>
+          <li><a href="https://primariasector1.ro/servicii-online/">Servicii online</a></li>
+          <li><a href="https://primariasector1.ro/contact/">Contact</a></li>
+          <li><a href="https://primariasector1.ro/transparenta/">Transparență</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Urmărește-ne</h4>
+        <ul>
+          <li><a href="https://www.facebook.com/primariasectorului1/">Facebook</a></li>
+          <li><a href="https://www.instagram.com/primariasector1/">Instagram</a></li>
+          <li><a href="https://www.youtube.com/channel/UCPrimariaSector1">YouTube</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p style="color:white">&copy; 2025 Primăria Sectorului 1. Toate drepturile rezervate.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

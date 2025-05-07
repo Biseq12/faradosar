@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Primăria Sector 1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #004080;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #004080;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        main {
+            padding: 30px 20px;
+            max-width: 900px;
+            margin: auto;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h2 {
+            color: #004080;
+            margin-bottom: 20px;
+        }
+
+        p, li {
+            line-height: 1.6;
+            font-size: 16px;
+            color: #333;
+        }
+        
+
+        ul {
+            padding-left: 20px;
+        }
+
+        .contact-section {
+            margin-bottom: 30px;
+        }
+
+        .contact-form {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #004080;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .submit-btn:hover {
+            background-color: #003060;
+        }
+
+        footer {
+            background-color: #004080;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            main {
+                padding: 20px 15px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Primăria Sector 1</h1>
+        <h4>România fără dosar</h4>
+        <hr color="white" style="padding-top: 3px; margin-top: 1.5rem; border-radius: 3rem;">
+    </header>
+    
+    <nav>
+        <a href="index.html">Acasă</a>
+        <a href="desprenoi.html">Despre noi</a>
+        <a href="contact.html">Contact</a>
+        <a href="contulmeu.html">Contul Meu</a>
+    </nav>
+
+<main class="container">
+    <h2>Contact</h2>
+
+    <div class="contact-section">
+        <p><strong>Adresă:</strong> Bulevardul Banu Manta nr. 9, Sector 1, București</p>
+        <p><strong>Telefon centrală:</strong> 021 207 89 00</p>
+        <p><strong>Email:</strong> primaria@primarias1.ro</p>
+        <p><strong>Program cu publicul:</strong></p>
+        <ul>
+            <li>Luni, Marți, Miercuri: 08:30 - 16:30</li>
+            <li>Joi: 08:30 - 18:30</li>
+            <li>Vineri: 08:30 - 14:00</li>
+        </ul>
+    </div>
+
+    <div class="contact-section">
+        <p>Dacă ai întrebări, sesizări sau propuneri, nu ezita să ne contactezi. Ne dorim să construim o administrație locală mai transparentă și mai aproape de cetățean.</p>
+        <p>Prin intermediul platformei noastre, încercăm să reducem birocrația și să simplificăm accesul la servicii publice esențiale.</p>
+    </div>
+
+    <div class="contact-section contact-form">
+        <h3>Formular de Contact</h3>
+        <form action="#" method="POST">
+            <input type="text" id="name" class="input-field" placeholder="Numele tău" required>
+            <input type="email" id="email" class="input-field" placeholder="Adresa de email" required>
+            <textarea id="message" class="input-field" placeholder="Mesajul tău" rows="5" required></textarea>
+            <button type="submit" class="submit-btn">Trimite mesajul</button>
+        </form>
+    </div>
+</main>
+<footer>
+    <p style="color: white;">&copy; 2025 Primăria Sectorului 1 București</p>
+    <p style="color: white;">Str. Banu Manta nr. 9, Sector 1, București | Telefon: 021 224 41 33 | Email: <a href="mailto:contact@primaria1.ro">contact@primaria1.ro</a></p>
+    <p><a href="https://www.primariasector1.ro" target="_blank">www.primariasector1.ro</a></p>
+</footer>
+</body>
+</html>

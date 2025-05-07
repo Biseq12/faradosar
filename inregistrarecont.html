@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Înregistrare</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Înregistrare cont</h1>
+        <hr color="white" style="padding-top: 3px; margin-top: 1.5rem; border-radius: 3rem;">
+        <nav class="navbar">
+            <ul>
+                <li><a href="desprenoi.html">Despre noi</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="www.ghiseul.ro">Ghiseul.ro</a></li>
+    
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="registration-box">
+            <h2>Completează datele</h2>
+            <form id="registrationForm">
+                <input type="text" id="nume" class="input-field" placeholder="Nume Prenume" required>
+                <input type="text" id="CNP" class="input-field" placeholder="CNP" required>
+                <input type="text" id="serie_ci" class="input-field" placeholder="Serie CI" required>
+                <input type="text" id="numar_ci" class="input-field" placeholder="Număr CI" required>
+                <input type="date" id="nastere" class="input-field" required>
+                <input type="text" id="loc_nastere" class="input-field" placeholder="Locul nașterii" required>
+                <input type="text" id="nationalitate" class="input-field" placeholder="Naționalitate" required>
+                <input type="text" id="telefon" class="input-field" placeholder="Număr de telefon" required>
+                <input type="email" id="email" class="input-field" placeholder="Email" required>
+                <input type="text" id="adresa" class="input-field" placeholder="Adresă completă" required>
+                <input type="text" id="judet" class="input-field" placeholder="Județ" required>
+                <input type="text" id="localitate" class="input-field" placeholder="Localitate" required>
+                <input type="text" id="cod_postal" class="input-field" placeholder="Cod poștal" required>
+
+                <label for="tip_locuinta">Tip locuință:</label>
+                <select id="tip_locuinta" class="input-field" required>
+                    <option value="">Selectează</option>
+                    <option value="proprietar">Proprietar</option>
+                    <option value="chirias">Chiriaș</option>
+                    <option value="altul">Altul</option>
+                </select>
+
+                <p>Carte de identitate / Pașaport:</p>
+                <input type="file" id="buletin" class="input-field" required>
+
+                <label for="stare_civila">Stare civilă:</label>
+                <select id="stare_civila" class="input-field" required>
+                    <option value="">Selectează</option>
+                    <option value="Necăsătorit">Necăsătorit(ă)</option>
+                    <option value="Căsătorit">Căsătorit(ă)</option>
+                </select>
+
+                <div id="certificatCasatorieContainer" style="display: none;">
+                    <p>Certificat de căsătorie:</p>
+                    <input type="file" id="certificat_casatorie" class="input-field">
+                </div>
+
+                <input type="password" id="password" class="input-field" placeholder="Parola" required>
+                <button type="submit" class="submit-btn">Înregistrează-te</button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        const stareCivila = document.getElementById('stare_civila');
+        const certificatContainer = document.getElementById('certificatCasatorieContainer');
+
+        stareCivila.addEventListener('change', function () {
+            certificatContainer.style.display = this.value === 'Casatorit' ? 'block' : 'none';
+        });
+
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const user = {
+                nume: document.getElementById('nume').value,
+                CNP: document.getElementById('CNP').value,
+                serieCI: document.getElementById('serie_ci').value,
+                numarCI: document.getElementById('numar_ci').value,
+                dataNasterii: document.getElementById('nastere').value,
+                locNastere: document.getElementById('loc_nastere').value,
+                nationalitate: document.getElementById('nationalitate').value,
+                telefon: document.getElementById('telefon').value,
+                email: document.getElementById('email').value,
+                adresa: document.getElementById('adresa').value,
+                judet: document.getElementById('judet').value,
+                localitate: document.getElementById('localitate').value,
+                codPostal: document.getElementById('cod_postal').value,
+                tipLocuinta: document.getElementById('tip_locuinta').value,
+                buletin: document.getElementById('buletin').files[0]?.name || '',
+                stareCivila: document.getElementById('stare_civila').value,
+                certificatCasatorie: document.getElementById('certificat_casatorie').files[0]?.name || '',
+                password: document.getElementById('password').value
+            };
+
+            localStorage.setItem(user.CNP, JSON.stringify(user));
+            window.location.href = 'contulmeu.html';
+        });
+    </script>
+    <footer class="site-footer">
+        <div class="footer-container">
+          <div class="footer-section">
+            <h4>Primăria Sectorului 1</h4>
+            <p style="color:white">Str. Banu Manta nr. 9, Sector 1, București</p>
+            <p style="color:white">Telefon: 021 319 60 00</p>
+            <p style="color:white">Email: contact@primariasector1.ro</p>
+          </div>
+          <div class="footer-section">
+            <h4>Linkuri utile</h4>
+            <ul>
+              <li><a href="https://primariasector1.ro/">Site oficial</a></li>
+              <li><a href="https://primariasector1.ro/servicii-online/">Servicii online</a></li>
+              <li><a href="https://primariasector1.ro/contact/">Contact</a></li>
+              <li><a href="https://primariasector1.ro/transparenta/">Transparență</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Urmărește-ne</h4>
+            <ul>
+              <li><a href="https://www.facebook.com/primariasectorului1/">Facebook</a></li>
+              <li><a href="https://www.instagram.com/primariasector1/">Instagram</a></li>
+              <li><a href="https://www.youtube.com/channel/UCPrimariaSector1">YouTube</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p style="color:white">&copy; 2025 Primăria Sectorului 1. Toate drepturile rezervate.</p>
+        </div>
+      </footer>
+</body>
+</html>
