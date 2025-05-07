@@ -1,17 +1,35 @@
 /* Stiluri generale */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f3f3f3;
+    background-image: url(https://biseq12.github.io/faradosar/Design-titlu.png);
     margin: 0;
     padding: 0;
 }
 
-header {
-    background-color: #004080;
-    color: white;
-    padding: 15px;
-    text-align: center;
+html {
+  scroll-behavior: smooth;
 }
+
+header {
+  background-color: white;
+  position: relative;
+  z-index: 1;
+}
+
+
+      header {
+  background-image: url(https://biseq12.github.io/faradosar/BKGBUN.png);
+  background-repeat: no-repeat;
+  background-size: cover; /* sau: background-size: 100% 100%; dacă vrei să forțezi și înălțimea */
+  background-position: center; /* pentru a centra imaginea */
+  color: white;
+  height: 20rem;
+  text-align: center;
+}
+      header h1 {
+          margin: 0;
+          font-size: 3rem;
+      }
 
 main {
     display: flex;
@@ -23,37 +41,26 @@ main {
 }
 
 /* Navbar Stilizat */
-.navbar {
-    background-color: #004080;
-    overflow: hidden;
-    text-align: right;
-    margin-top: 10px;
-    border-radius: 1rem;
+nav {
+  padding: 10px;
+  text-align: right;
 }
 
-.navbar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+nav a {
+  color: #fff;
+  font-size: larger;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 15px;
+  text-shadow: 0 0 4px #000, 0 0 3px #000;
 }
 
-.navbar ul li {
-    display: inline;
+
+
+nav a:hover {
+  text-decoration: underline;
 }
 
-.navbar ul li a {
-    color: white;
-    text-decoration: none;
-    padding: 12px 10px;
-    display: inline-block;
-    font-weight: bold;
-}
-
-.navbar ul li a:hover {
-    background-color: #ffffff;
-    color:#333;
-    border-radius: 5px;
-}
 
 /* Stil pentru containerul de login și înregistrare */
 .login-box,
@@ -138,74 +145,119 @@ label, p {
     }
 }
 
+.checkbox-container {
+  margin: 15px 0;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.checkbox-container input {
+  margin-right: 10px;
+}
+
+
 .h4top{
     margin: -15px;
     margin-bottom: 5px;
 }
 
 .site-footer {
-    background-color: #004080;
-    color: white;
-    padding: 40px 20px;
-    font-size: 14px;
-  }
-  
+  background-color: #000000;
+  color: white;
+  padding: 40px 20px;
+  font-size: 14px;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-section {
+  flex: 1 1 300px;
+  margin: 10px;
+  color: #ffffff;
+}
+
+.footer-section h4 {
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+  color: #d0d0d0;
+  text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+  text-decoration: underline;
+  color: #ffffff;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  border-top: 1px solid #ffffff;
+  padding-top: 10px;
+  color: #d0d0d0;
+}
+
+@media screen and (max-width: 768px) {
   .footer-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: auto;
-  }
-  
-  .footer-section {
-    flex: 1 1 300px;
-    margin: 10px;
-    color: #ffffff;
-  }
-  
-  .footer-section h4 {
-    margin-bottom: 15px;
-    color: #ffffff;
-  }
-  
-  .footer-section ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .footer-section ul li {
-    margin-bottom: 10px;
-  }
-  
-  .footer-section ul li a {
-    color: #d0d0d0;
-    text-decoration: none;
-  }
-  
-  .footer-section ul li a:hover {
-    text-decoration: underline;
-    color: #ffffff;
-  }
-  
-  .footer-bottom {
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    margin-top: 20px;
-    border-top: 1px solid #ffffff;
-    padding-top: 10px;
-    color: #d0d0d0;
   }
-  
-  @media screen and (max-width: 768px) {
-    .footer-container {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-  
-    .footer-section {
-      margin-bottom: 20px;
-    }
+
+  .footer-section {
+    margin-bottom: 20px;
   }
+}
+.logo-section {
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.footer-logo {
+width: 200px;
+height: 200px;
+object-fit: contain;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  padding: 10px 20px;
+  text-align: right;
+  background-color: transparent;
+  transition: background-color 0.5s ease, box-shadow 0.5s ease;
+  z-index: 1000;
+}
+
+nav.scrolled {
+  background-color: #ffffff;
+  border-radius: 10rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+nav.scrolled a {
+  color: #004080 !important;
+  text-shadow: none !important;
+}
   
   

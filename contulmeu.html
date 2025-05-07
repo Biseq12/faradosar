@@ -9,17 +9,15 @@
 <body>
 
 <header>
-    <div class="navbar">
+    <nav>
         <ul>
-            <li><a href="index.html">Acasa</a></li>
-            <li><a href="javascript:void(0)" onclick="toggleSection('eliberareAdeverinte')">Eliberare Adeverinte</a></li>
-            <li><a href="javascript:void(0)" onclick="toggleSection('evidentaFiscala')">Evidenta Fiscala</a></li>
-            <li><a href="javascript:void(0)" onclick="toggleSection('solicitariCivile')">Solicitari Civile</a></li>
-            <li><a href="javascript:void(0)" onclick="toggleSection('reclamatii')">Reclamatii</a></li>
+            <a href="index.html">Acasa</a></li>
+            <a href="javascript:void(0)" onclick="toggleSection('eliberareAdeverinte')">Eliberare Adeverinte</a>
+            <a href="javascript:void(0)" onclick="toggleSection('evidentaFiscala')">Evidenta Fiscala</a>
+            <a href="javascript:void(0)" onclick="toggleSection('solicitariCivile')">Solicitari Civile</a>
+            <a href="javascript:void(0)" onclick="toggleSection('reclamatii')">Reclamatii</a>
         </ul>
-    </div>
-    <h1>Primaria Sectorului 1</h1>
-    <h4 style="margin-top:-15px; margin-bottom: -10px;">Contul meu</h4>
+    </nav>
 </header>
 
 <main>
@@ -33,15 +31,10 @@
     <div class="dashboard">
         <h2>Bun venit, <span id="userName"></span></h2>
         <div class="user-info">
-            <p><strong>CNP:</strong> <span id="userCNP"></span></p>
+            <p><strong>Utilizator:</strong> <span id="userUSERDATA"></span></p>
             <p><strong>Telefon:</strong> <span id="userTelefon"></span></p>
             <p><strong>Email:</strong> <span id="userEmail"></span></p>
             <p><strong>Adresă:</strong> <span id="userAdresa"></span></p>
-            <p><strong>Județ:</strong> <span id="userJudet"></span></p>
-            <p><strong>Serie CI:</strong> <span id="userSerieCI"></span></p>
-            <p><strong>Număr CI:</strong> <span id="userNumarCI"></span></p>
-            <p><strong>Stare Civilă:</strong> <span id="userStareCivila"></span></p>
-            <p><strong>Buletin:</strong> <span id="userBuletin"></span></p>
         </div>
 
         <!-- Secțiunile aplicației -->
@@ -104,30 +97,25 @@
 <script>
     
     window.addEventListener('DOMContentLoaded', () => {
-        const currentCNP = localStorage.getItem('currentUser');
+        const currentUSERDATA = localStorage.getItem('currentUser');
 
-        if (!currentCNP) {
+        if (!currentUSERDATA) {
             alert('Nu sunteți autentificat.');
             window.location.href = 'inregistrare.html';
             return;
         }
 
-        const userData = JSON.parse(localStorage.getItem(currentCNP));
+        const userData = JSON.parse(localStorage.getItem(currentUSERDATA));
         if (!userData) {
             alert('Datele utilizatorului nu au putut fi încărcate.');
             return;
         }
 
         document.getElementById('userName').textContent = userData.nume || '';
-    document.getElementById('userCNP').textContent = currentCNP;
+    document.getElementById('userUSERDATA').textContent = currentUSERDATA;
     document.getElementById('userTelefon').textContent = userData.telefon || '';
     document.getElementById('userEmail').textContent = userData.email || '';
     document.getElementById('userAdresa').textContent = userData.adresa || '';
-    document.getElementById('userJudet').textContent = userData.judet || '';
-    document.getElementById('userSerieCI').textContent = userData.serieCI || '';
-    document.getElementById('userNumarCI').textContent = userData.numarCI || '';
-    document.getElementById('userBuletin').textContent = userData.buletin || '';
-    document.getElementById('userStareCivila').textContent = userData.stareCivila || '';
     });
 
     function submitAdeverinte() {
@@ -221,15 +209,31 @@
     });
 });
 
+    window.addEventListener("scroll", function() {
+        const nav = document.querySelector("nav");
+        if (window.scrollY > 50) {
+            nav.classList.add("scrolled");
+        } else {
+            nav.classList.remove("scrolled");
+        }
+    });
+
 </script>
 <footer class="site-footer">
     <div class="footer-container">
+      <div class="footer-section logo-section">
+        <a href="https://primariasector1.ro" target="_blank">
+          <img src="/LOGO-PS1-2023_vector-ALB.png" alt="Sigla" class="footer-logo">
+        </a>
+      </div>
+    
       <div class="footer-section">
         <h4>Primăria Sectorului 1</h4>
         <p style="color:white">Str. Banu Manta nr. 9, Sector 1, București</p>
         <p style="color:white">Telefon: 021 319 60 00</p>
         <p style="color:white">Email: contact@primariasector1.ro</p>
       </div>
+    
       <div class="footer-section">
         <h4>Linkuri utile</h4>
         <ul>
@@ -239,19 +243,8 @@
           <li><a href="https://primariasector1.ro/transparenta/">Transparență</a></li>
         </ul>
       </div>
-      <div class="footer-section">
-        <h4>Urmărește-ne</h4>
-        <ul>
-          <li><a href="https://www.facebook.com/primariasectorului1/">Facebook</a></li>
-          <li><a href="https://www.instagram.com/primariasector1/">Instagram</a></li>
-          <li><a href="https://www.youtube.com/channel/UCPrimariaSector1">YouTube</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p style="color:white">&copy; 2025 Primăria Sectorului 1. Toate drepturile rezervate.</p>
-    </div>
-  </footer>
+  
+    </footer>
 
 </body>
 </html>

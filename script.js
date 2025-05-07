@@ -2,22 +2,22 @@
 document.getElementById('loginForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
-    const CNP = document.getElementById('CNP').value;
+    const USERDATA = document.getElementById('USERDATA').value;
     const password = document.getElementById('password').value;
 
     // Verificare login
-    const storedUser = localStorage.getItem(CNP);
+    const storedUser = localStorage.getItem(USERDATA);
     if (storedUser) {
         const user = JSON.parse(storedUser);
         if (user.password === password) {
-            // Salvăm CNP-ul în localStorage pentru a-l folosi pe pagina "Contul meu"
-            localStorage.setItem('CNP', CNP);
+            // Salvăm USERDATA-ul în localStorage pentru a-l folosi pe pagina "Contul meu"
+            localStorage.setItem('USERDATA', USERDATA);
             window.location.href = 'contulmeu.html'; // Redirecționare
         } else {
-            alert('CNP sau parolă incorectă.');
+            alert('Utilizator sau parolă incorectă.');
         }
     } else {
-        alert('Nu există un cont cu acest CNP.');
+        alert('Nu există un cont cu acest utilizator.');
     }
 });
 
@@ -26,7 +26,7 @@ document.getElementById('registrationForm').addEventListener('submit', function(
     event.preventDefault();
 
     const nume = document.getElementById('nume').value;
-    const CNP = document.getElementById('CNP').value;
+    const USERDATA = document.getElementById('USERDATA').value;
     const telefon = document.getElementById('telefon').value;
     const email = document.getElementById('email').value;
     const adresa = document.getElementById('adresa').value;
@@ -36,7 +36,7 @@ document.getElementById('registrationForm').addEventListener('submit', function(
     // Creare obiect utilizator
     const user = {
         nume: nume,
-        CNP: CNP,
+        USERDATA: USERDATA,
         telefon: telefon,
         email: email,
         adresa: adresa,
@@ -44,15 +44,15 @@ document.getElementById('registrationForm').addEventListener('submit', function(
         password: password
     };
 
-    // Verificăm dacă CNP-ul deja există
-    if (localStorage.getItem(CNP)) {
-        alert('Contul cu acest CNP există deja!');
+    // Verificăm dacă USERDATA-ul deja există
+    if (localStorage.getItem(USERDATA)) {
+        alert('Contul cu acest utilizator există deja!');
     } else {
         // Salvează utilizatorul în localStorage
-        localStorage.setItem(CNP, JSON.stringify(user));
+        localStorage.setItem(USERDATA, JSON.stringify(user));
 
-        // Salvăm CNP-ul în localStorage pentru a-l folosi pe pagina "Contul meu"
-        localStorage.setItem('CNP', CNP);
+        // Salvăm USERDATA-ul în localStorage pentru a-l folosi pe pagina "Contul meu"
+        localStorage.setItem('USERDATA', USERDATA);
         
         // Redirecționare către pagina de cont
         window.location.href = 'contulmeu.html';
@@ -61,15 +61,14 @@ document.getElementById('registrationForm').addEventListener('submit', function(
 
 // Funcția pentru încărcarea datelor utilizatorului pe pagina "Contul meu"
 window.onload = function() {
-    const CNP = localStorage.getItem('CNP'); // obține CNP-ul din localStorage
-    if (CNP) {
-        const user = JSON.parse(localStorage.getItem(CNP));
+    const USERDATA = localStorage.getItem('USERDATA'); // obține USERDATA-ul din localStorage
+    if (USERDATA) {
+        const user = JSON.parse(localStorage.getItem(USERDATA));
         document.getElementById('userName').textContent = user.nume;
-        document.getElementById('userCNP').textContent = user.CNP;
+        document.getElementById('userUSERDATA').textContent = user.USERDATA;
         document.getElementById('userTelefon').textContent = user.telefon;
         document.getElementById('userEmail').textContent = user.email;
         document.getElementById('userAdresa').textContent = user.adresa;
-        document.getElementById('userBuletin').textContent = user.buletin;
     } else {
         window.location.href = 'index.html';
     }
@@ -77,6 +76,16 @@ window.onload = function() {
 
 // Funcția pentru logout
 function logout() {
-    localStorage.removeItem('CNP');
+    localStorage.removeItem('USERDATA');
     window.location.href = 'index.html';
 }
+
+
+window.addEventListener("scroll", function() {
+    const nav = document.querySelector("nav");
+    if (window.scrollY > 50) {
+        nav.classList.add("scrolled");
+    } else {
+        nav.classList.remove("scrolled");
+    }
+});

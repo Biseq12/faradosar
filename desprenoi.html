@@ -14,28 +14,46 @@
         }
 
         header {
-            background-color: #004080;
-            color: white;
-            padding: 20px;
-            text-align: center;
+    background-color: white;
+    position: relative;
+    z-index: 1;
+}
+
+
+        header {
+    background-image: url(https://biseq12.github.io/faradosar/BKGBUN.png);
+    background-repeat: no-repeat;
+    background-size: cover; /* sau: background-size: 100% 100%; dacă vrei să forțezi și înălțimea */
+    background-position: center; /* pentru a centra imaginea */
+    color: white;
+    height: 20rem;
+    text-align: center;
+}
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
         }
 
         nav {
-            background-color: #004080;
             padding: 10px;
             text-align: right;
         }
 
         nav a {
-            color: white;
-            margin: 0 15px;
+            color: #fff;
+            font-size: larger;
             text-decoration: none;
             font-weight: bold;
+            margin: 0 15px;
+            text-shadow: 0 0 4px #000, 0 0 3px #000;
         }
+
+
 
         nav a:hover {
             text-decoration: underline;
         }
+
 
         .container {
             max-width: 900px;
@@ -52,22 +70,114 @@
             margin-bottom: 20px;
         }
 
-        footer {
-            background-color: #004080;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            margin-top: 40px;
-        }
+        .site-footer {
+    background-color: #000000;
+    color: white;
+    padding: 40px 20px;
+    font-size: 14px;
+  }
+  
+  .footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  .footer-section {
+    flex: 1 1 300px;
+    margin: 10px;
+    color: #ffffff;
+  }
+  
+  .footer-section h4 {
+    margin-bottom: 15px;
+    color: #ffffff;
+  }
+  
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-section ul li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-section ul li a {
+    color: #d0d0d0;
+    text-decoration: none;
+  }
+  
+  .footer-section ul li a:hover {
+    text-decoration: underline;
+    color: #ffffff;
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    border-top: 1px solid #ffffff;
+    padding-top: 10px;
+    color: #d0d0d0;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .footer-container {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .footer-section {
+      margin-bottom: 20px;
+    }
+  }
+  .logo-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-        footer a {
-            color: white;
+.footer-logo {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    padding: 10px 20px;
+    text-align: right;
+    background-color: transparent;
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
+    z-index: 1000;
+}
+
+nav.scrolled {
+    background-color: #ffffff;
+    border-radius: 10rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+nav.scrolled a {
+    color: #004080 !important;
+    text-shadow: none !important;
+}
+nav a.active {
+    border-bottom: 2px solid #ffffff;
+    padding-bottom: 3px;
+    text-shadow: none;
+            font-size: larger;
             text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
+            font-weight: bold;
+            margin: 0 15px;
+            text-shadow: 0 0 4px #000, 0 0 3px #000;
+}
+  
 
         .pmb-img {
             width: 100%;
@@ -83,14 +193,12 @@
 <header>
     <nav>
         <a href="index.html">Acasă</a>
-        <a href="desprenoi.html">Despre noi</a>
+        <a href="desprenoi.html" class="active">Despre noi</a>
         <a href="comunicate.html">Comunicate de presa</a>
         <a href="contact.html">Contact</a>
         <a href="contulmeu.html">Contul Meu</a>
         <a href="https://www.ghiseul.ro">Ghiseul.ro</a>
     </nav>
-    <h1>Primăria Sector 1</h1>
-    <h4>România fără dosar</h4>
 </header>
 
 <div class="container">
@@ -107,11 +215,41 @@
     <p>Această versiune a platformei reprezintă un prototip funcțional de bază, realizat în condiții de buget limitat și resurse tehnice reduse. Cu toate acestea, proiectul are un potențial considerabil de dezvoltare și poate fi extins și modernizat semnificativ în viitor, odată cu atragerea resurselor necesare..</p>
 </div>
 
-<footer>
-    <p>&copy; 2025 Primăria Sectorului 1 București</p>
-    <p>Str. Banu Manta nr. 9, Sector 1, București | Telefon: 021 224 41 33 | Email: <a href="mailto:contact@primaria1.ro">contact@primaria1.ro</a></p>
-    <p><a href="https://www.primariasector1.ro" target="_blank">www.primariasector1.ro</a></p>
-</footer>
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-section logo-section">
+      <a href="https://primariasector1.ro" target="_blank">
+        <img src="/LOGO-PS1-2023_vector-ALB.png" alt="Sigla" class="footer-logo">
+      </a>
+    </div>
+  
+    <div class="footer-section">
+      <h4>Primăria Sectorului 1</h4>
+      <p style="color:white">Str. Banu Manta nr. 9, Sector 1, București</p>
+      <p style="color:white">Telefon: 021 319 60 00</p>
+      <p style="color:white">Email: contact@primariasector1.ro</p>
+    </div>
+  
+    <div class="footer-section">
+      <h4>Linkuri utile</h4>
+      <ul>
+        <li><a href="https://primariasector1.ro/">Site oficial</a></li>
+        <li><a href="https://primariasector1.ro/servicii-online/">Servicii online</a></li>
+        <li><a href="https://primariasector1.ro/contact/">Contact</a></li>
+        <li><a href="https://primariasector1.ro/transparenta/">Transparență</a></li>
+      </ul>
+    </div>
 
+  </footer>
+  <script>
+    window.addEventListener("scroll", function() {
+        const nav = document.querySelector("nav");
+        if (window.scrollY > 50) {
+            nav.classList.add("scrolled");
+        } else {
+            nav.classList.remove("scrolled");
+        }
+    });
+    </script>
 </body>
 </html>
